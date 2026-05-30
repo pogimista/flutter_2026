@@ -39,10 +39,10 @@ class PokemonCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              Text(_formattedId, style: AppTextStyles.pokemonId),
+              Text(_formattedId, style: context.labelSmall),
               Text(
                 _capitalized(name),
-                style: AppTextStyles.pokemonName,
+                style: context.bodyMedium,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
               ),

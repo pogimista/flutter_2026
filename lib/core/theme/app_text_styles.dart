@@ -2,61 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
-class AppTextStyles {
-  // --- Grid card ---
-  static TextStyle get pokemonId => GoogleFonts.nunito(
-        fontSize: 11,
-        fontWeight: FontWeight.w600,
-        color: AppColors.secondary,
-      );
+extension AppTextStyles on BuildContext {
+  TextTheme get _t => Theme.of(this).textTheme;
 
-  static TextStyle get pokemonName => GoogleFonts.nunito(
-        fontSize: 13,
-        fontWeight: FontWeight.w700,
-      );
-
-  // --- Detail screen ---
-  static TextStyle get detailId => GoogleFonts.nunito(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        color: AppColors.secondary,
-      );
-
-  static TextStyle get detailName => GoogleFonts.nunito(
-        fontSize: 28,
+  TextStyle get headlineMedium => GoogleFonts.nunito(
+        textStyle: _t.headlineMedium,
         fontWeight: FontWeight.w800,
       );
 
-  static TextStyle get typeChip => GoogleFonts.nunito(
-        fontSize: 12,
-        fontWeight: FontWeight.w700,
-        color: Colors.white,
-        letterSpacing: 0.5,
-      );
-
-  static TextStyle get infoValue => GoogleFonts.nunito(
-        fontSize: 20,
+  TextStyle get titleLarge => GoogleFonts.nunito(
+        textStyle: _t.titleLarge,
         fontWeight: FontWeight.w700,
       );
 
-  static TextStyle get infoLabel => GoogleFonts.nunito(
-        fontSize: 13,
-        color: AppColors.secondary,
-      );
-
-  static TextStyle get sectionTitle => GoogleFonts.nunito(
-        fontSize: 18,
+  TextStyle get titleMedium => GoogleFonts.nunito(
+        textStyle: _t.titleMedium,
         fontWeight: FontWeight.w800,
       );
 
-  static TextStyle get statLabel => GoogleFonts.nunito(
-        fontSize: 13,
-        fontWeight: FontWeight.w500,
+  TextStyle get bodyMedium => GoogleFonts.nunito(
+        textStyle: _t.bodyMedium,
+        fontWeight: FontWeight.w700,
+      );
+
+  TextStyle get bodySmall => GoogleFonts.nunito(
+        textStyle: _t.bodySmall,
         color: AppColors.secondary,
       );
 
-  static TextStyle get statValue => GoogleFonts.nunito(
-        fontSize: 13,
+  TextStyle get labelMedium => GoogleFonts.nunito(
+        textStyle: _t.labelMedium,
         fontWeight: FontWeight.w700,
+      );
+
+  TextStyle get labelSmall => GoogleFonts.nunito(
+        textStyle: _t.labelSmall,
+        color: AppColors.secondary,
+        fontWeight: FontWeight.w600,
       );
 }

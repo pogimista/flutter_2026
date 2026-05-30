@@ -64,8 +64,8 @@ class _DetailBody extends StatelessWidget {
                       const Icon(Icons.catching_pokemon, size: 180),
                 ),
                 const SizedBox(height: 8),
-                Text(pokemon.formattedId, style: AppTextStyles.detailId),
-                Text(pokemon.name.capitalized, style: AppTextStyles.detailName),
+                Text(pokemon.formattedId, style: context.labelSmall),
+                Text(pokemon.name.capitalized, style: context.headlineMedium),
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +88,7 @@ class _DetailBody extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                Text('Base Stats', style: AppTextStyles.sectionTitle),
+                Text('Base Stats', style: context.titleMedium),
                 const SizedBox(height: 8),
                 ...pokemon.stats.entries.map(
                   (e) => _StatRow(
@@ -119,7 +119,14 @@ class _TypeChip extends StatelessWidget {
         color: typeColor(type),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(type.toUpperCase(), style: AppTextStyles.typeChip),
+      child: Text(
+        type.toUpperCase(),
+        style: context.labelSmall.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.5,
+        ),
+      ),
     );
   }
 }
@@ -133,8 +140,8 @@ class _InfoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value, style: AppTextStyles.infoValue),
-        Text(label, style: AppTextStyles.infoLabel),
+        Text(value, style: context.titleLarge),
+        Text(label, style: context.bodySmall),
       ],
     );
   }
@@ -154,11 +161,17 @@ class _StatRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 140,
-            child: Text(_formatStatName(name), style: AppTextStyles.statLabel),
+            child: Text(
+              _formatStatName(name),
+              style: context.labelMedium.copyWith(
+                color: AppColors.secondary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
           SizedBox(
             width: 36,
-            child: Text(value.toString(), style: AppTextStyles.statValue),
+            child: Text(value.toString(), style: context.labelMedium),
           ),
           Expanded(
             child: ClipRRect(
