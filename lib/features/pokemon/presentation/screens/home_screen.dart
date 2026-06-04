@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/di/service_locator.dart' as di;
-import '../bloc/pokemon_detail_cubit.dart';
+import 'package:go_router/go_router.dart';
 import '../bloc/pokemon_list_bloc.dart';
 import '../bloc/pokemon_list_state.dart';
 import '../widgets/pokemon_card.dart';
-import 'detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -35,16 +33,7 @@ class HomeScreen extends StatelessWidget {
               return PokemonCard(
                 id: p.id,
                 name: p.name,
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => BlocProvider(
-                      create: (_) =>
-                          di.sl<PokemonDetailCubit>()..load(p.id),
-                      child: DetailScreen(id: p.id, name: p.name),
-                    ),
-                  ),
-                ),
+                onTap: () => context.push('/pokemon/${p.id}?name=${p.name}'),
               );
             },
           ),

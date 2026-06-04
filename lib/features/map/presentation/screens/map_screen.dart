@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../core/di/service_locator.dart' as di;
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/string_extensions.dart';
-import '../../../pokemon/presentation/bloc/pokemon_detail_cubit.dart';
-import '../../../pokemon/presentation/screens/detail_screen.dart';
 import '../../domain/entities/nearby_pokemon.dart';
 import '../bloc/map_cubit.dart';
 import '../bloc/map_state.dart';
@@ -199,15 +198,8 @@ class _PokemonPanel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => BlocProvider(
-                      create: (_) =>
-                          di.sl<PokemonDetailCubit>()..load(pokemon.id),
-                      child: DetailScreen(id: pokemon.id, name: pokemon.name),
-                    ),
-                  ),
+                onPressed: () => context.push(
+                  '/pokemon/${pokemon.id}?name=${pokemon.name}',
                 ),
                 child: const Text('Details'),
               ),
