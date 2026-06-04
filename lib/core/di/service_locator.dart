@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../config/app_config.dart';
 import '../../features/map/data/datasources/map_datasource.dart';
 import '../../features/map/data/repositories/map_repository_impl.dart';
 import '../../features/map/domain/repositories/map_repository.dart';
@@ -22,7 +23,7 @@ Future<void> init() async {
   sl.registerSingleton<Dio>(
     Dio(
       BaseOptions(
-        baseUrl: 'https://pokeapi.co/api/v2',
+        baseUrl: AppConfig.instance.apiBaseUrl,
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
       ),

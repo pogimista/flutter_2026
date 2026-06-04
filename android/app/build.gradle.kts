@@ -15,22 +15,43 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.pokemon_flutter"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        manifestPlaceholders["googleMapsApiKey"] =
-            System.getenv("GOOGLE_MAPS_API_KEY") ?: ""
+    }
+
+    flavorDimensions += "environment"
+
+    productFlavors {
+        create("dev") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue("string", "app_name", "Pokédex Dev")
+            manifestPlaceholders["googleMapsApiKey"] =
+                System.getenv("GOOGLE_MAPS_API_KEY_DEV") ?: ""
+        }
+        create("staging") {
+            dimension = "environment"
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            resValue("string", "app_name", "Pokédex Staging")
+            manifestPlaceholders["googleMapsApiKey"] =
+                System.getenv("GOOGLE_MAPS_API_KEY_STAGING") ?: ""
+        }
+        create("prod") {
+            dimension = "environment"
+            resValue("string", "app_name", "Pokédex")
+            manifestPlaceholders["googleMapsApiKey"] =
+                System.getenv("GOOGLE_MAPS_API_KEY") ?: ""
+        }
     }
 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
     }
